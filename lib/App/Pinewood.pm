@@ -42,7 +42,6 @@ __PACKAGE__->config(
     enable_catalyst_header => 1, # Send X-Catalyst header
 );
 
-# Start the application
 __PACKAGE__->setup();
 
 =encoding utf8
