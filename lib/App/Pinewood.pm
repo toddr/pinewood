@@ -40,6 +40,15 @@ __PACKAGE__->config(
     # Disable deprecated behavior needed by old applications
     disable_component_resolution_regex_fallback => 1,
     enable_catalyst_header => 1, # Send X-Catalyst header
+    default_view  => 'HTML',
+    default_model => 'pinewood',
+);
+
+__PACKAGE__->config(
+    'Plugin::Static::Simple' => {
+        'dirs'         => [ 'images',                     'css', 'javascript', ],
+        'include_path' => [ __PACKAGE__->path_to( 'root', 'static' ), ],
+    }
 );
 
 __PACKAGE__->setup();

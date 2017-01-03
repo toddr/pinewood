@@ -1,0 +1,11 @@
+{
+    "name": "App::Pinewood",
+    "App::Pinewood::Model::pinewood": {
+        "schema_class": "App::Pinewood::Model",
+        "connect_info": {
+            "dsn": "dbi:Pg:dbname=pinewood",
+            "user": "pinewood",
+            "password": "fioCdgfnqq[Jh4N}pYn9yd/sEPVEVGAJosY"
+        }
+    }
+}
