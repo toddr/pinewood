@@ -57,7 +57,7 @@ __PACKAGE__->config(
 
 __PACKAGE__->config(
     'Plugin::Static::Simple' => {
-        'dirs'         => [ 'images',                     'css', 'javascript', ],
+        'dirs'         => [ 'images', 'fonts', 'css', 'js', ],
         'include_path' => [ __PACKAGE__->path_to( 'root', 'static' ), ],
     }
 );

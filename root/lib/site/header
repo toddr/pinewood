@@ -1,6 +1,8 @@
 <!-- BEGIN site/header -->
-<h1 class="title">[% template.title or site.title %]</h1>
+<nav class="navbar navbar-default">
+[% template.title or site.title %]
 <!-- END site/header -->
 [% IF logged_in_user %]<a href="/logout">Log Off [% logged_in_user %]</a>
-[% ELSE %]<a href="[% Catalyst.uri_for('/login') %]?path=[% current_path %]">Log In</a>
+[% ELSE %]<a href="[% Catalyst.uri_for('/login') %]?path=[% $current_path == "/login" ? "" : $current_path %]">Log In</a>
 [% END -%]
+</nav>

@@ -1,6 +1,4 @@
-<div id="header">[% PROCESS site/header %]</div>
-
-<div id="content">
+[% PROCESS site/header %]
+<div class="container">
 [% content %]
 </div>
-

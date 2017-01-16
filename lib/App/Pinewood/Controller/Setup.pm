@@ -27,6 +27,11 @@ sub index :Path :Args(0) {
     
 }
 
+sub create_group :Local {
+    my ( $self, $c ) = @_;
+    
+}
+
 
 
 =encoding utf8

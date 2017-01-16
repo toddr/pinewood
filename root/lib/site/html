@@ -2,10 +2,15 @@
 <html>
 <head>
 <title>[% template.title or site.title %]</title>
-<link rel="stylesheet" type="text/css" href="/css/site.css" />
-<style type="text/css">[% PROCESS ttsite.css %]</style>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 </head>
-<body class="yui-skin-sam">
+<body>
+
 [% content %]
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
 </body>
 </html>

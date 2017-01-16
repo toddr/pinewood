@@ -100,7 +100,7 @@ sub login : Local {
 
     $c->stash->{'path'} = $c->req->params->{'path'} || '/';
 
-    my $user_name = $c->req->params->{'username'};
+    my $user_name = $c->req->params->{'email'};
     my $password  = $c->req->params->{'password'};
     return unless ( $user_name && $password );
 
