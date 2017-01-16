@@ -1,0 +1,22 @@
+[% META title = "Your login is required to proceed" %]
+<div align=left>
+
+[% IF login_failure %]<font color=red>[% login_failure %]</font><p>[% END %]
+
+<form name="login" action='[% Catalyst.uri_for('/login') %]' method="POST" enctype="multipart/form-data">
+<input type="hidden" id="path" name="path" value="[% path %]" />
+<table>
+  <tr>
+    <td>User:</td>
+    <td><input type="text" id="username" name="username" [% IF username %]value="[% username %]"[% END %]/></td>
+  </tr>
+  <tr>
+    <td>Password:</td>
+    <td><input type="password" id="password" name="password"/></td>
+  </tr>
+  <tr>
+    <td colspan="2"><input type="submit" value="Submit" /></td>
+  </tr>
+</table>
+</form>
+</div>

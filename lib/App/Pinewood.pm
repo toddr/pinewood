@@ -4,6 +4,8 @@ use namespace::autoclean;
 
 use Catalyst::Runtime 5.80;
 
+use Log::Log4perl::Catalyst;
+
 # Set flags and add plugins for the application.
 #
 # Note that ORDERING IS IMPORTANT here as plugins are initialized in order,
@@ -17,10 +19,19 @@ use Catalyst::Runtime 5.80;
 #                 directory
 
 use Catalyst qw/
-    -Debug
-    ConfigLoader
-    Static::Simple
-/;
+  ConfigLoader
+  Static::Simple
+  Cache::FastMmap
+  Redirect
+  StackTrace
+  Authentication
+  Session
+  Session::Store::FastMmap
+  Session::State::Cookie
+  Browser
+  UploadProgress
+  /;
+
 
 extends 'Catalyst';
 
@@ -50,6 +61,50 @@ __PACKAGE__->config(
         'include_path' => [ __PACKAGE__->path_to( 'root', 'static' ), ],
     }
 );
+
+__PACKAGE__->config->{hashedcookies} = {
+    key       => 'dsgvhwbeb4udsl4ie4nds',
+    algorithm => 'SHA1',                 # optional
+    required  => 1,                      # optional
+};
+
+my $log4perl_config = "$FindBin::Bin/../etc/log4perl.cfg";
+__PACKAGE__->log( Log::Log4perl::Catalyst->new( $log4perl_config, watch_delay => 10 ) );
+
+my $id = `whoami`;
+chomp $id;
+__PACKAGE__->config->{cache}{backend} = {
+    class      => "Cache::FastMmap",
+    share_file => "/tmp/cat_fm.$id.$$",
+    cache_size => "5m",
+};
+
+__PACKAGE__->config->{cache}{expires} = 43200;
+__PACKAGE__->config->{cache}{backends}{jemplate}{store} = 'FastMmap';
+__PACKAGE__->config->{'View::Jemplate'}{jemplate_dir} =
+  __PACKAGE__->path_to( 'root', 'jemplate' );
+__PACKAGE__->config->{'View::Jemplate'}{jemplate_ext} = '.tt2';
+
+# Authentication Setup
+__PACKAGE__->config(
+    'Plugin::Authentication' => {
+        default_realm => 'users',
+        users         => {
+            credential => {
+                class => 'Salted',
+                password_field => 'password',
+                password_type  => 'clear'
+            },
+            store => {
+                class         => 'DBIx::Class',
+                user_model    => 'Pinewood::Auth',
+                #role_relation => 'role',
+                #role_field    => 'user_role',
+            }
+        }
+    }
+);
+
 
 __PACKAGE__->setup();
 

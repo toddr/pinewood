@@ -62,13 +62,7 @@ __PACKAGE__->table("auth");
   data_type: 'boolean'
   is_nullable: 1
 
-=head2 salt
-
-  data_type: 'char'
-  is_nullable: 0
-  size: 256
-
-=head2 password_hash
+=head2 password
 
   data_type: 'char'
   is_nullable: 1
@@ -116,9 +110,7 @@ __PACKAGE__->add_columns(
   { data_type => "varchar", is_nullable => 0, size => 500 },
   "active",
   { data_type => "boolean", is_nullable => 1 },
-  "salt",
-  { data_type => "char", is_nullable => 0, size => 256 },
-  "password_hash",
+  "password",
   { data_type => "char", is_nullable => 1, size => 256 },
   "created",
   {
@@ -199,8 +191,8 @@ __PACKAGE__->might_have(
 );
 
 
-# Created by DBIx::Class::Schema::Loader v0.07046 @ 2017-01-01 22:15:35
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:vFEPqGRY40lA6SmMUay7/A
+# Created by DBIx::Class::Schema::Loader v0.07046 @ 2017-01-15 17:24:26
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:bSwvA2iC2Bk7Orjy5zMPBw
 
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration

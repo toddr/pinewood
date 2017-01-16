@@ -1,0 +1,3 @@
+[% META title = "Unauthorized" %]
+<h2>Unauthorized!</h2>
+<span class="error">You are not authorized to access this area.[% IF reason %] [%reason%][% END %]</span>
